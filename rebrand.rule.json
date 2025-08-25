@@ -1,0 +1,101 @@
+{
+  "basePrefix": "htr",
+  "styleEditable": {
+    "filename": "src/Styles/htrHlsStory.scss",
+    "template": "ui-template.html",
+    "variables": [
+      {
+        "name": "--htrhs-highlight-font",
+        "value": "'Gotham', sans-serif",
+        "title": "Set the font family for highlighted text elements"
+      },
+      {
+        "name": "--htrhs-normal-font",
+        "value": "'Gotham', sans-serif",
+        "title": "Set the font family for regular text elements"
+      },
+      {
+        "name": "--htrhs-pop-highlight-clr",
+        "value": "#4F3AFD",
+        "title": "Defines the highlight color used in pop-up elements"
+      },
+      {
+        "name": "--htrhs-pop-bg",
+        "value": "#F8F8F8",
+        "title": "Set the background color for pop-up elements"
+      },
+      {
+        "name": "--htrhs-pop-clr",
+        "value": "#1E1E1E",
+        "title": "Set the text color for pop-up elements"
+      },
+      {
+        "name": "--htrhs-card-color",
+        "value": "#fff",
+        "title": "Set the text color for story cards"
+      },
+      {
+        "name": "--htrhs-card-background",
+        "value": "lightgray 50% / cover no-repeat",
+        "title": "Set the background for story cards"
+      },
+      {
+        "name": "--htrhs-card-bg-shadow",
+        "value": "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 31.5%, rgba(0, 0, 0, 0.30) 94%)",
+        "title": "Set the background shadow effect for story cards"
+      },
+      {
+        "name": "--htrhs-card-text-shadow",
+        "value": "0px 0px 6.1px rgba(0, 0, 0, 0.60)",
+        "title": "Set the text shadow for story cards"
+      },
+      {
+        "name": "--htrhs-tag-bg",
+        "value": "#fff",
+        "title": "Set the background color for tags"
+      },
+      {
+        "name": "--htrhs-tag-color",
+        "value": "#000",
+        "title": "Set the text color for tags"
+      },
+      {
+        "name": "--htrhs-tag-radius",
+        "value": "35px",
+        "title": "Set the border radius for tags"
+      },
+      {
+        "name": "--htrhs-inside-tag-bg",
+        "value": "#0D0D0D",
+        "title": "Set the background color for inside tags"
+      },
+      {
+        "name": "--htrhs-inside-tag-color",
+        "value": "#fff",
+        "title": "Set the text color for inside tags"
+      },
+      {
+        "name": "--htrhs-card-height",
+        "value": "434px",
+        "title": "Set the default height for story cards"
+      }
+    ]
+  },
+  "editable": [
+    {
+        "filenames": ["src/Lab/outstream.html"],
+        "title": "Change the outstream player ID",
+        "value": "x1apmu"
+    },
+    {
+        "filenames": ["src/Lab/outstream.html", "src/Lab/default.html","src/Lab/lazy_loading.html"],
+        "title": "Change the video playlist ID",
+        "value": "x9hgb0"
+    },
+    {
+      "filenames" : ["htrHlsStory_Tutorial.md"],
+      "title": "Change the Dailymotion username",
+      "value" : "cosmopolitan"
+    }
+  ]
+}

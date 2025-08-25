@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>htr hls - Lazy Loading</title>
+    <style> 
+body{
+    margin: 0px;
+}
+.container{
+    max-width: 1200px;
+    height: 1500px;
+    margin: auto;
+    position: relative;
+}
+/* menu */
+.menu{
+    height: 80px;
+    position: sticky;
+    margin-bottom: 30px;
+    top: 0px;
+    border-bottom: 1px solid #dbdbdb;
+    background: #fff;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 999;
+}
+.icon{
+    fill: #b3b2b2;
+    width: 40px;
+}
+.section-wrapper {
+    display: flex;
+    height: 90%;
+    justify-content: space-between;
+    gap: 50px;
+}
+/* left-section */
+.left-section{
+    max-width: 845px;
+    width: 100%;
+}
+/* right-section */
+.right-section{
+    max-width: 240px;
+    width: 50%;
+}
+.para{
+    margin-bottom: 30px;
+}
+.line{
+    height: 10px;
+    background: #eaeaea;
+    margin: 5px 0;
+}
+.line-100{
+    width: 100%;
+}
+.line-80{
+    width: 80%;
+}
+.line-50{
+    width: 50%;
+}
+.img-div{
+    width: 100%;
+    height: auto;
+    padding-bottom: 56.25%;
+    background: #e6e6e6;
+    margin: 10px 0px;
+}
+.image-line-div{
+    display: flex;
+}
+.img-wrapper{
+    width: 40%;
+}
+.line-wrapper{
+    flex: 1;
+    padding: 20px;
+}
+
+@media only screen and (max-width: 1080px) {
+    body{
+        margin: 5px;
+    }
+    .right-section {
+    display: none;
+    }
+}
+    </style>
+
+    <!--Lazy load with preload-->
+    <link rel="preload" href="https://geo.dailymotion.com/player/x3oz8.js" as="script">
+    <link rel="preload" href="https://geo.dailymotion.com/player/x3oz8.html" as="document">
+
+</head>
+    <body>
+        <div class="container">
+            <div class="menu">
+                <svg class="icon" viewBox="0 0 24 24" data-testid="MenuIcon">
+                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+                </svg>
+            </div>
+            <div class="section-wrapper">
+                <div class="left-section">
+                    <div class="para">
+                        <div class="line line-50"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                    </div>
+                    <div class="para">
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-80"></div>
+                    </div>
+
+                    <div class="para">
+                      <div class="htr-hls-story" playlistId="x9hgb0" apiUrl="https://htr-playlists.professional-services.workers.dev/" lazyLoad="true"></div> 
+                      
+                    <script>
+
+                        document.addEventListener("vvs-playerIsVisible", (e) => {
+                            console.log("player is visible for videoId:", e.detail.videoId);
+                            consoleEvents("vvs-playerIsVisible", e.detail.videoId);
+                        });
+                        document.addEventListener("vvs-playerIsHidden", (e) => {
+                            console.log("player is hidden for videoId:", e.detail.videoId);
+                            consoleEvents("vvs-playerIsHidden", e.detail.videoId);
+                        });
+                        document.addEventListener("vvs-playerLoad", (e) => {
+                            console.log("Player loaded for videoId:", e.detail.videoId, "with duration:", e.detail.duration);
+                            consoleEvents("vvs-playerLoad", e.detail.videoId);
+                        });
+                        document.addEventListener("vvs-videoStart", (e) => {
+                            console.log("Video started for videoId:", e.detail.videoId);
+                            consoleEvents("vvs-videoStart", e.detail.videoId);
+                        });
+                        document.addEventListener("vvs-videoPlaying", (e) => {
+                            console.log("Video playing for videoId:", e.detail.videoId, );
+                            consoleEvents("vvs-videoPlay", e.detail.videoId, e.detail.duration, e.detail.currentTime);
+                        });
+                        document.addEventListener("vvs-videoPlay", (e) => {
+                            console.log("Video played for videoId:", e.detail.videoId, );
+                            consoleEvents("vvs-videoPlay", e.detail.videoId, e.detail.duration, e.detail.currentTime);
+                        });
+                        document.addEventListener("vvs-videoPause", (e) => {
+                            console.log("Video paused for videoId:", e.detail.videoId);
+                            consoleEvents("vvs-videoPause", e.detail.videoId, e.detail.duration, e.detail.currentTime);
+                        });
+                        document.addEventListener("vvs-videoSeeking", (e) => {
+                            console.log("Video seeking for videoId:", e.detail.videoId, "of duration:", e.detail.duration, "at current time:", e.detail.currentTime);
+                            consoleEvents("vvs-videoSeeking", e.detail.videoId, e.detail.duration, e.detail.currentTime);
+                        });
+                        document.addEventListener("vvs-videoSeeked", (e) => {
+                            console.log("Video seeked for videoId:", e.detail.videoId, "of duration:", e.detail.duration, "at current time:", e.detail.currentTime);
+                            consoleEvents("vvs-videoSeeked", e.detail.videoId);
+                        });
+                        document.addEventListener("vvs-videoBuffering", (e) => {
+                            console.log("Video buffering for videoId:", e.detail.videoId, "of duration:", e.detail.duration, "at current time:", e.detail.currentTime);
+                            consoleEvents("vvs-videoWaiting", e.detail.videoId);
+                        });
+                        document.addEventListener("vvs-videoEnd", (e) => {
+                            console.log("Video ended for videoId:", e.detail.videoId);
+                        });
+                        document.addEventListener("vvs-videoError", (e) => {
+                            console.error("Video error for videoId:", e.detail.videoId, "with error:", e.detail.error);
+                        });
+                        
+                        // Temporary event for debugging
+                        document.addEventListener("vvs-videoStalled", (e) => {
+                            consoleEvents("vvs-videoStalled", e.detail.videoId);
+                        });
+                    </script>
+
+
+
+                    <script>
+                        // Debug console setup
+
+                        const params = new URLSearchParams(window.location.search);
+                        const hasDebug = params.has('vvs-debug');
+                        const debugDiv = document.createElement('div');
+                        if(hasDebug){
+                            debugDiv.style.cssText = `
+                                position: fixed;
+                                top: 10px;
+                                left: 10px;
+                                background-color: rgb(255, 255, 255);
+                                padding: 10px 20px;
+                                border: 1px solid rgb(204, 204, 204);
+                                z-index: 2147483647;
+                                font-family: monospace;
+                                font-size: 12px;
+                                color: rgb(51, 51, 51);
+                                overflow-y: auto;
+                                display: flex;
+                                flex-direction: column;
+                                gap: 10px;
+                                width: 300px;
+                            `;
+                            debugDiv.id = 'debug-console';
+                            debugDiv.innerHTML = `
+                                <div style="font-weight: bold; color: #3c75ff;">Debug Console</div>
+                                <div style="color: #838383;">Listening to video events...</div>
+                                <div style="display: grid; grid-template-columns: 50% auto; gap: 10px; color: #838383;margin-bottom: 20px;">
+                                    <div style="display:flex;gap:10px;align-items: center"><div style="width: 10px;height: 10px;background: #3c75ff;border-radius:50%"></div> Video Start</div>
+                                    <div style="display:flex;gap:10px;align-items: center"><div style="width: 4px;height: 20px;background: #92ff92;"></div> Video Play</div>
+                                    <div style="display:flex;gap:10px;align-items: center"><div style="width: 4px;height: 20px;background: #ff4848;"></div> Video Pause</div>
+                                    <div style="display:flex;gap:10px;align-items: center"><div style="width: 10px;height: 20px;background: #000;"></div> Player Visible</div>
+                                </div>
+                            `;
+                            document.body.appendChild(debugDiv);
+                        }
+
+                        function consoleEvents(eventName, videoId, duration, currentTime) {
+                            if (!hasDebug) return;
+
+                            // Handle player load: create a new tracking div
+                            if (eventName === "vvs-playerLoad") {
+                                const trackingDiv = document.createElement('div');
+                                trackingDiv.id = `tracking-${videoId}`;
+                                trackingDiv.style.position = 'relative';
+                                trackingDiv.innerHTML = `
+                                    <div style="width: 300px;height: 25px;background: #e0e0e0;display:flex;align-items: center;justify-content: center;color:#838383" class="video-visual">
+                                        player load for ${videoId}
+                                    </div>
+                                `;
+                                debugDiv.appendChild(trackingDiv);
+                                return;
+                            }
+
+                            // For all other events, find the existing tracking div
+                            const trackingDiv = document.getElementById(`tracking-${videoId}`);
+                            if (!trackingDiv) return;
+
+                            const visualDiv = trackingDiv.querySelector(".video-visual");
+
+                            switch (eventName) {
+                                case "vvs-playerIsVisible":
+                                    if (visualDiv) visualDiv.style.backgroundColor = '#000';
+                                    break;
+                                case "vvs-playerIsHidden":
+                                    if (visualDiv) visualDiv.style.backgroundColor = '#e0e0e0';
+                                    break;
+                                case "vvs-videoStart":
+                                    // Show a start marker
+                                    const startDiv = document.createElement('div');
+                                    startDiv.style.cssText = `
+                                        width: 10px;
+                                        height: 10px;
+                                        background: #3c75ff;
+                                        position: absolute;
+                                        left: -15px;
+                                        top: 8px;
+                                        border-radius: 50%;
+                                        z-index: 1;
+                                    `;
+                                    trackingDiv.appendChild(startDiv);
+                                    break;
+                                case "vvs-videoPlay":
+                                case "vvs-videoPause":
+                                    // Show a progress marker for play/pause events
+                                    const newDiv = document.createElement('div');
+                                    // Calculate left position based on currentTime and duration
+                                    const left = (typeof duration === "number" && duration > 0)
+                                        ? ((currentTime / duration) * 300) + 'px'
+                                        : '0';
+                                    // Set color based on event
+                                    const backgroundColor = eventName === "vvs-videoPlay" ? '#92ff92'
+                                                         : eventName === "vvs-videoPause" ? '#ff4848'
+                                                         : '#fff';
+                                    newDiv.style.cssText = `
+                                        width: 4px;
+                                        height: 25px;
+                                        background: ${backgroundColor};
+                                        position: absolute;
+                                        left: ${left};
+                                        top: 0;
+                                        z-index: 1;
+                                    `;
+                                    trackingDiv.appendChild(newDiv);
+                                    break;
+                                default:
+                                    // Handle other events if needed
+                                    if (visualDiv) visualDiv.innerText = `${videoId} - ${eventName}`;
+                                    console.log(`Event: ${eventName} for videoId: ${videoId}`);
+                                    break;
+                            }
+                        }
+                    </script>
+                    </div>
+                    
+                    <div class="para">
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-80"></div>
+                    </div>
+                    <div class="para">
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-80"></div>
+                    </div>
+                    <div class="para">
+                        <div class="image-line-div">
+                            <div class="img-wrapper">
+                            <div class="img-div"></div>
+                            </div>
+                            <div class="line-wrapper">
+                            <div class="para">
+                                <div class="line line-50"></div>
+                                <div class="line line-100"></div>
+                                <div class="line line-100"></div>
+                                <div class="line line-80"></div>
+                            </div>
+                            
+                            <div class="line line-100"></div>
+                            <div class="line line-100"></div>
+                            <div class="line line-50"></div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="para">
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-80"></div>
+                    </div>
+                    <div class="para">
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-80"></div>
+                    </div>
+                    <div class="para">
+                        <div class="image-line-div">
+                            <div class="img-wrapper">
+                            <div class="img-div"></div>
+                            </div>
+                            <div class="line-wrapper">
+                            <div class="para">
+                                <div class="line line-50"></div>
+                                <div class="line line-100"></div>
+                                <div class="line line-100"></div>
+                                <div class="line line-80"></div>
+                            </div>
+                            
+                            <div class="line line-100"></div>
+                            <div class="line line-100"></div>
+                            <div class="line line-50"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="para">
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-80"></div>
+                    </div>
+                </div>
+                <div class="right-section">
+                    <div class="para">
+                    <div class="img-div"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-50"></div>
+                    </div>
+                    <div class="para">
+                    <div class="line line-50"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-80"></div>
+                    </div>
+                    <div class="para">
+                    <div class="line line-80"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-50"></div>
+                    </div>
+                    <div class="para">
+                    <div class="img-div"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-50"></div>
+                    </div>
+                    <div class="para">
+                    <div class="line line-80"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-50"></div>
+                    </div>
+                    <div class="para">
+                    <div class="img-div"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-50"></div>
+                    </div>
+                    <div class="para">
+                    <div class="img-div"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-50"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>
+
+

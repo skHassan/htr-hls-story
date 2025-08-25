@@ -1,0 +1,58 @@
+.daily-carousel {
+  display: block;
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: scroll hidden;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  scroll-padding-top: 0;
+
+
+  .daily-carousel-wrapper {
+    display: flex;
+    gap: var(--daily-carousel-gap, 0px); // Default gap between slides
+    width: 100%;
+    flex-direction: row;
+    scrollbar-width: none;
+    scroll-padding-top: 0;
+    .daily-carousel-slide {
+      position: relative;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      display: block;
+      flex-shrink: 0;
+    }
+  }
+
+  &.vertical {
+    scroll-snap-type: y mandatory;
+    overflow: hidden scroll;
+    width: 100%;
+
+    .daily-carousel-wrapper {
+      flex-direction: column;
+      .daily-carousel-slide {
+        scroll-snap-align: center;
+      }
+    }
+  }
+}
+
+.daily-carousel-btn {
+  transition:  opacity 300ms ease-out;
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0 !important;
+  }
+  &.locked{
+    pointer-events: none;
+    opacity: .1 !important;
+  }
+}

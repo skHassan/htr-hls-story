@@ -1,0 +1,64 @@
+{
+  "name": "htr-hls-story",
+  "version": "2.1.0",
+  "version_short": "2.1",
+  "description": "Vertical video stories that create inline carousel and fullscreen player",
+  "main": "dist/htr-hls-stories.js",
+  "unpkg": "dist/htr-hls-stories.js",
+  "jsdelivr": "dist/htr-hls-stories.js",
+  "author": "Dailymotion Professional Service team",
+  "license": "MIT License",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "htrstrory",
+    "vertical",
+    "video",
+    "player",
+    "stories",
+    "carousel",
+    "fullscreen"
+  ],
+  "scripts": {
+    "start": "webpack serve --mode development --env env=dev",
+    "dev": "webpack --mode development --env env=dev",
+    "build": "webpack --mode production --env env=prod",
+    "format": "prettier --write \"src/**/*.{ts,js,scss,html}\"",
+    "lint": "eslint \"src/**/*.{ts,js}\"",
+    "lint:fix": "eslint \"src/**/*.{ts,js}\" --fix",
+    "stylelint": "stylelint \"src/**/*.scss\"",
+    "release": "standard-version"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.46",
+    "@typescript-eslint/eslint-plugin": "^8.32.0",
+    "@typescript-eslint/parser": "^8.32.0",
+    "autoprefixer": "^10.4.21",
+    "css-loader": "^6.11.0",
+    "cssnano": "^7.0.7",
+    "del-webpack-plugin": "^2.1.0",
+    "eslint": "^9.26.0",
+    "html-webpack-plugin": "^5.5.3",
+    "postcss": "^8.5.3",
+    "postcss-loader": "^8.1.1",
+    "prettier": "^3.5.3",
+    "sass": "^1.88.0",
+    "sass-loader": "^16.0.5",
+    "style-loader": "^3.3.4",
+    "stylelint": "^16.19.1",
+    "stylelint-config-standard-scss": "^14.0.0",
+    "stylelint-scss": "^6.12.0",
+    "terser-webpack-plugin": "^5.3.3",
+    "ts-loader": "^9.5.0",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.2.2"
+  },
+  "dependencies": {
+    "hls.js": "^1.6.5"
+  }
+}

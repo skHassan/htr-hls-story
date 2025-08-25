@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",  // Useful if you have folder structure or path aliases
+    "paths": {
+      "*": [
+        "*",
+        "src/*"
+      ]
+    },
+    "module": "esnext", // Use ESNext for module system
+    "target": "es6",    // Compile down to ES6 (for modern JavaScript)
+    "lib": ["es6", "dom"],  // You can add other libs like `es2015` if needed
+    "sourceMap": true,  // Enables source maps for debugging
+    "typeRoots": ["./node_modules/@types"], // Ensure this includes @types
+    "types": ["node"], // Explicitly include Node.js types
+    "moduleResolution": "node", // Resolves modules the Node.js way
+    "noImplicitReturns": true,  // Extra strict checks
+    "noImplicitThis": true,     // Extra strict checks
+    "experimentalDecorators": true,  // If you're using decorators (e.g., in Angular)
+    "strict": true,             // Enabling strict mode for better type checking
+    "outDir": "./dist"          // Output directory for compiled files
+  },
+  "include": ["src"],  // Includes the src directory for compilation
+  "exclude": ["node_modules"]  // Excludes the node_modules directory
+}
+

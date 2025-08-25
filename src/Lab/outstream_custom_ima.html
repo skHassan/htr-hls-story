@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>htr Outstream Sample</title>
+    <link rel="preload" as="font" type="font/woff2"  href="gotham_bold.woff2"/>
+    <link rel="preload" as="font" type="font/woff2"  href="gotham_book.woff2"/>
+    <link rel="preload" as="font" type="font/woff2"  href="abrilfatface.woff2"/>
+    <style>
+
+@font-face {
+    font-display: swap;
+    font-family: 'Gotham';
+    font-style: normal;
+    font-weight: normal;
+    src: local("Gotham"), url(gotham_book.woff2) format("woff2"), url(gotham_book.woff) format("woff")
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Gotham';
+    font-style: normal;
+    font-weight: bold;
+    src: local("Gotham"), url(gotham_bold.woff2) format("woff2"), url(gotham_bold.woff) format("woff")
+}
+
+
+@font-face {
+    font-display: swap;
+    font-family: 'Abril Fatface';
+    font-style: normal;
+    font-weight: normal;
+    src: local("Abril Fatface"), url(abrilfatface.woff2) format("woff2"), url(abrilfatface.woff) format("woff")
+}
+
+      
+body{
+    margin: 0px;
+}
+.container{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 10px;
+    position: relative;
+}
+/* menu */
+.menu{
+    height: 80px;
+    position: sticky;
+    margin-bottom: 30px;
+    top: 0px;
+    border-bottom: 1px solid #dbdbdb;
+    background: #fff;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 999;
+}
+.icon{
+    fill: #b3b2b2;
+    width: 40px;
+}
+/* left-section */
+.left-section{
+    max-width: 845px;
+    width: 100%;
+}
+.para{
+    margin-bottom: 30px;
+}
+.line{
+    height: 10px;
+    background: #eaeaea;
+    margin: 5px 0;
+}
+.line-100{
+    width: 100%;
+}
+.line-80{
+    width: 80%;
+}
+.line-50{
+    width: 50%;
+}
+.img-div{
+    width: 100%;
+    height: auto;
+    padding-bottom: 56.25%;
+    background: #e6e6e6;
+    margin: 10px 0px;
+}
+.image-line-div{
+    display: flex;
+}
+.img-wrapper{
+    width: 40%;
+}
+.line-wrapper{
+    flex: 1;
+    padding: 20px;
+}
+.Title.Title--secondary {
+    text-align: center;
+    font-family: 'Abril Fatface', serif;
+    font-size: 48px;
+    margin-bottom: 25px;
+    line-height: 1em;
+}
+
+@media (max-width: 1019px) and (min-width: 640px) {
+    .Title.Title--secondary {
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 33px;
+        margin-bottom: 15px;
+    }
+    .container{
+        padding: 0;
+    }
+}
+
+@media (max-width: 639px) {
+    .Title.Title--secondary {
+        margin-left: 3.125vw;
+        margin-right: 3.125vw;
+        font-size: 7.8125vw;
+        margin-bottom: 4.6875vw;
+    }
+}
+    </style>
+    <!-- Include IMA SDK somewhere in your HTML -->
+    <script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <!-- Include the outstreamAd.js file after the SDK -->
+    <script src="https://staging.dmvs-apac.com/htr-hls-story/outsream-player/outstreamAd.js"></script>
+</head>
+    <body>
+        <div class="container">
+            <div class="menu">
+                <svg class="icon" viewBox="0 0 24 24" data-testid="MenuIcon">
+                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+                </svg>
+            </div>
+            <div class="section-wrapper">
+                <div class="para">
+                    <div class="line line-50"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                </div>
+                <div class="para">
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-80"></div>
+                </div>
+
+                <div class="para">
+                    <div class="Title Title--secondary"><span class="Title-content">Cosmo Stories</span></div>
+                    <style>
+                        .htr-hls-story{
+                            margin-bottom: 30px;
+                        }
+
+                        #htr-outsream-player{
+                            width: 100%;
+                            height: 100%;
+                            position: absolute;
+                            inset: 0;
+                        }
+                    </style>
+                    <div class="htr-hls-story" playlistId="x9hgb0" apiUrl="https://htr-playlists.professional-services.workers.dev/" data-vvs-id="dynamicStory"></div>
+                <script>
+                    let player = null;
+                    let adtriggered = false;
+                    window.htrHlsStory = window.htrHlsStory || {};
+                    window.htrHlsStory['dynamicStory'] = {
+                        // to show close button after 5 seconds from ad start
+                        showCloseButtonOnAd : 5,
+                        // to ad dynamic slide
+                        addDynamicSlide: {
+                            // per slide condition
+                            perSlide : (slideNum) => {
+                                // return true for slide 3, 8, 13, 18
+                                return slideNum%3 === 0 && slideNum !== 0;
+                            },
+                            /**
+                             * @description :  When new slide is created
+                             * 
+                             * @param {HTMLElement} adContainer a htmlElement object for ads
+                             */
+                            onCreate: (adContainer) =>{
+                                adContainer.classList.add("htr-outstream")
+                                adContainer.innerHTML = `<div id="htr-outsream-player"></div>`;
+                                // const loader = adContainer.querySelector("span.loader");
+
+                                // For vertical ad: width: 360, height: 640
+                                initOutstreamAd(
+                                    "htr-outsream-player",
+                                    "https://basil79.github.io/vast-sample-tags/pg/vast.xml",
+                                    {
+                                        width: "auto",
+                                        height: "auto",
+                                        muted: window["htrHlsStoryMuted"] !== undefined ? window["htrHlsStoryMuted"] : true,
+                                        onClean: function() {
+                                            onInterstitialOff(adContainer);
+                                        }
+                                    }
+                                );
+
+                                // Load Player
+                                
+                                //         player.on(dailymotion.events.PLAYER_VIEWABILITYCHANGE, (state)=>{
+                                //             if(state.playerIsViewable){
+                                //                 player.play()
+                                //             }
+                                //             state.playerIsViewable 
+                                //             ? (player.play(),window.htrHlsStory['dynamicStory'].lockSlide(true)) 
+                                //             : player.pause();
+                                //         });
+                            },
+                            /**
+                             * @description :  When new slide is shown
+                             */
+                            onShow: (adContainer)=> {
+                                if(!adtriggered){
+                                    adContainer.querySelector("#htr-outsream-player").click();
+                                    // Lock slide
+                                    window.htrHlsStory['dynamicStory'].lockSlide(true);
+                                }
+                            }
+                        }
+                    };
+
+
+                    function onInterstitialOff(slide){
+                        slide.parentElement.removeChild(slide);
+                        window.htrHlsStory['dynamicStory'].lockSlide(false)
+                    }
+                </script>
+                </div>
+                
+                <div class="para">
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-80"></div>
+                </div>
+                <div class="para">
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-80"></div>
+                </div>
+                <div class="para">
+                    <div class="image-line-div">
+                        <div class="img-wrapper">
+                        <div class="img-div"></div>
+                        </div>
+                        <div class="line-wrapper">
+                        <div class="para">
+                            <div class="line line-50"></div>
+                            <div class="line line-100"></div>
+                            <div class="line line-100"></div>
+                            <div class="line line-80"></div>
+                        </div>
+                        
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-50"></div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="para">
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-80"></div>
+                </div>
+                <div class="para">
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-80"></div>
+                </div>
+                <div class="para">
+                    <div class="image-line-div">
+                        <div class="img-wrapper">
+                        <div class="img-div"></div>
+                        </div>
+                        <div class="line-wrapper">
+                        <div class="para">
+                            <div class="line line-50"></div>
+                            <div class="line line-100"></div>
+                            <div class="line line-100"></div>
+                            <div class="line line-80"></div>
+                        </div>
+                        
+                        <div class="line line-100"></div>
+                        <div class="line line-100"></div>
+                        <div class="line line-50"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="para">
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-100"></div>
+                    <div class="line line-80"></div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </body>
+</html>
+
+
